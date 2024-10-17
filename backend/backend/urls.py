@@ -6,11 +6,9 @@ from app import views
 # Create a router object
 router = routers.DefaultRouter()
 
-# Register the viewsets with the router
-router.register(r'departments', views.DepartmentView, basename='department')
-router.register(r'instructors', views.InstructorView, basename='instructor')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),  # Route for API endpoints
+    path('api/', include(router.urls)), 
+    path('api/register/', views.registerUser, name='register'),
 ]
