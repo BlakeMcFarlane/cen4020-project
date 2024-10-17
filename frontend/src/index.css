@@ -5,9 +5,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+}
+
+html, body {
+  margin: 0;
+  height: 100%; /* Ensure the body takes full height */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  height: 100%;  /* Make sure this is 100% to fill the body */
+  width: 100%;
+  display: flex;  /* Optional: if you want to center content */
+  margin: 0; /* Ensure no margin is applied */
+}
+
+div#root {
+  height: 100%; /* remove this line to see div.app is no more 100% height */
+  width: 100%; /* remove this line to see div.app is no more 100% height */
+}
+
