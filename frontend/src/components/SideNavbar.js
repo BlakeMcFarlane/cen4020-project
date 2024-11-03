@@ -4,12 +4,21 @@ import { MdInbox } from 'react-icons/md';   // https://react-icons.github.io/rea
 import { IoGridSharp } from "react-icons/io5";
 import { IoMdHelpCircle } from "react-icons/io";
 import { UserContext } from '../components/UserContext';  
-import { Link } from 'react-router-dom';  // Import Link for navigation
+import { Link, useNavigate } from 'react-router-dom';  // Import Link for navigation
 
 const SideNavbar = () => {
   const { userData, setUserData } = useContext(UserContext); 
 
-  
+  const navigate = useNavigate();  
+
+  // Sign out method
+  const handleSignOut = () => {
+    setUserData(null);
+    localStorage.removeItem('token'); 
+
+    navigate('/');
+  };
+
   return (
     <div class={styles.navContainer}>
         <div class={styles.itemContainer}>
@@ -31,7 +40,11 @@ const SideNavbar = () => {
           <IoMdHelpCircle class={styles.icon} size={60} />  
           <h2 class={styles.itemName}>Help</h2>
         </div>
-        <a><p>Sign Out</p></a>
+        <div className={styles.itemContainer}>
+        <a onClick={handleSignOut} className={styles.signOutLink}>
+          <p>Sign Out</p>
+        </a>
+      </div>
     </div>
   )
 }

@@ -1,0 +1,79 @@
+.container {
+    width: 100%;
+    display: flex;
+    height: 100vh;
+}
+
+
+.designContainer {
+    background-color: white;
+    height: 100vh;
+    width: 60%;
+}
+
+.signinContainer {
+    height: 100vh;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.signinBox {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    height: 700px;
+    border-radius: 20px;
+    border-width: 1px;
+    align-items: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    padding-top: 40px;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90px;
+}
+
+.input {
+    width: 300px;
+    height: 35px;
+    border-radius: 10px;
+    border: none; 
+    background-color: #f3f4f6; 
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); 
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.buttonContainer {
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+.button {
+    width: 300px;
+    border-radius: 10px;
+    height: 35px;
+    border-width: 0;
+}
+
+.middleBox {
+    display: flex;
+    width: 300px;
+    height: 30px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.image {
+    margin-left: -220px;
+    height: 100vh;
+    display: block;
+}
