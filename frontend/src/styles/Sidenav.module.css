@@ -1,0 +1,36 @@
+
+.navContainer {
+    background: grey;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 20;
+}
+
+.itemContainer {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.profilePhotoContainer {
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.itemName {
+    padding: 0;
+    margin: 0;
+}
+
+.icon {
+    display: flex;
+    justify-self: center;
+}
