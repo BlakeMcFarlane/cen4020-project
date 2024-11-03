@@ -10,5 +10,5 @@ router = routers.DefaultRouter()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)), 
-    path('api/register/', views.registerUser, name='register'),
-]
+    path('api/authenticate/', views.authenticateUser, name='authenticate'),
+] 

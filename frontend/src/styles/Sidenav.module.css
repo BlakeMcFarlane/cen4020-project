@@ -2,6 +2,7 @@
 .navContainer {
     background: grey;
     height: 100vh;
+    width: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,9 +20,9 @@
 }
 
 .profilePhotoContainer {
-    height: 100px;
-    width: 100px;
-    background-color: red;
+    height: 80px;
+    width: 80px;
+    background-color: rgb(32, 32, 32);
     border-radius: 50%;
 }
 
@@ -33,4 +34,14 @@
 .icon {
     display: flex;
     justify-self: center;
+}
+
+.boxLink {
+    text-decoration: none;
+    color: inherit; 
+}
+  
+.boxLink:hover {
+    cursor: pointer;
+    opacity: 0.8; 
 }
