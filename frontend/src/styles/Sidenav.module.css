@@ -11,19 +11,12 @@
 }
 
 .itemContainer {
-    height: 150px;
+    height: 140px;
     width: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
-
-.profilePhotoContainer {
-    height: 80px;
-    width: 80px;
-    background-color: rgb(32, 32, 32);
-    border-radius: 50%;
 }
 
 .itemName {
@@ -45,3 +38,17 @@
     cursor: pointer;
     opacity: 0.8; 
 }
+
+.profilePhotoContainer {
+    height: 80px;
+    width: 80px;
+    background-color: rgb(32, 32, 32);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.image {
+    object-fit: cover;
+    width: 100%;
+}
+
