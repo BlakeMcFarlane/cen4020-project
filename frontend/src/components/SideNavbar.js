@@ -20,11 +20,11 @@ const SideNavbar = () => {
   };
 
   return (
-          <div class={styles.navContainer}>
+      <div class={styles.navContainer}>
         <Link to="/profile" class={styles.boxLink}>
           <div class={styles.itemContainer} style={{'rowGap':'8px'}}>
             <div class={styles.profilePhotoContainer}>
-              <img src="http://localhost:8000/media/stock-photo.jpg" alt="Sign In" class={styles.image}/>
+              <img src="http://localhost:8000/media/rocky-image.jpg" alt="Sign In" class={styles.image}/>
             </div>
             <h2 class={styles.itemName}>{userData.first_name}</h2>
           </div>
@@ -36,7 +36,7 @@ const SideNavbar = () => {
           </div>
         </Link>
         <div class={styles.itemContainer}>
-          <MdInbox class={styles.icon} size={60} />  
+          <MdInbox class={styles.icon} size={63} style={{marginBottom:"-5px"}}/>  
           <h2 class={styles.itemName}>Inbox</h2>
         </div>
         <div class={styles.itemContainer}>

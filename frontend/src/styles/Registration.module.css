@@ -24,11 +24,30 @@
     overflow: hidden;
 }
 
+.registrationHeader {
+    width: 80%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
 .courseLookup {
     height: 400px;
     width: 85%;
     border-radius: 20px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.input {
+    width: 250px;
+    height: 25px;
+    border-radius: 15px;
+    border: none; 
+    background-color: #e2e2e2; 
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); 
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .boxHeader {
@@ -50,12 +69,49 @@
     height: 30px;
     align-items: center;
     font-size: 12pt;
+    padding-bottom: 5px;
 }
 
 .headerItem {
+    font-weight: 500;
+}
+
+.resultsBox {
+    padding-bottom: 60px;
+    height: 100%;
+}
+
+.noResultsContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    flex-direction: column;
 }
 
 .headerText {
     margin: 0;
     padding: 0;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 35px;
+    box-sizing: border-box;
+    margin: 0;
+    position: relative;
+    align-items: center;
+}
+
+.row::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 95%; 
+    border-bottom: 1px solid lightgrey;
+    left: 30px
 }

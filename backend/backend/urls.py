@@ -13,6 +13,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)), 
     path('api/authenticate/', views.authenticateUser, name='authenticate'),
+    path('api/search-courses/', views.search_courses, name='search_courses'),
 ] 
 
 if settings.DEBUG:

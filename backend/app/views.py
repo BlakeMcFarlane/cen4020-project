@@ -3,7 +3,27 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from app.models import Profile, Student, Instructor, Staff, Advisor  # Import all role-specific models
+from app.models import Profile, Student, Instructor, Staff, Advisor, Course  # Import all role-specific models
+from .serializers import CourseSerializer
+
+@api_view(['GET'])
+def search_courses(request):
+    query = request.GET.get('q', '')  # Get the query parameter from the request
+    if query:
+        # Search by subject, course number, or title
+        courses = Course.objects.filter(
+            subject__icontains=query
+        ) | Course.objects.filter(
+            course_number__icontains=query
+        ) | Course.objects.filter(
+            title__icontains=query
+        )
+    else:
+        courses = Course.objects.all()  # Return all courses if no query
+
+    serializer = CourseSerializer(courses, many=True)
+    return Response(serializer.data)
+
 
 @api_view(['POST'])
 def authenticateUser(request):
@@ -42,6 +62,7 @@ def authenticateUser(request):
                         'gpa': role_specific_obj.gpa,
                         'major': role_specific_obj.major.major_name if role_specific_obj.major else None,
                         'active_registration': role_specific_obj.active_registration,
+                        'class': role_specific_obj.year,
                     }
                 elif profile.role == 'instructor':
                     role_data = {
@@ -61,6 +82,9 @@ def authenticateUser(request):
             'email': user.email,
             'phone': profile.phone,
             'role': profile.role,
+            'citizen': profile.citizen,
+            'gender': profile.gender,
+            'ethnicity': profile.ethnicity,
         }
         user_data.update(role_data)         # adding unique role information
 

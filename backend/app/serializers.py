@@ -1,7 +1,13 @@
 # import serializers from the REST framework
 from rest_framework import serializers
-from .models import Instructor, Department
+from .models import Instructor, Department, Course
 
+class CourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['subject', 'course_number', 'title', 'credits', 'instructor', 'total_seats', 'available_seats']
+
+        
 # Department serializer
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
