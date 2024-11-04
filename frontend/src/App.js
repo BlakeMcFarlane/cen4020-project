@@ -1,7 +1,9 @@
 import SignIn from './components/SignIn'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Profile from './components/Profile';
 import Dashboard from './components/Dashboard';
 import Classroom from './components/student_db/Classroom';  
+import Registration from './components/student_db/Registration';
 import './index.css'; 
 import React, { useState, useEffect } from 'react';
 import { UserContext } from './components/UserContext';
@@ -27,8 +29,10 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<SignIn />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/classroom" element={<Classroom />} />
+            <Route path="/registration" element={<Registration />} />
           </Routes>
         </Router>
       </div>

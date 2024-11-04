@@ -24,12 +24,14 @@ export default function StudentDashboard() {
               <t>Acadmic Records</t>
             </div>
           </div>
+        <Link to="/registration" class={styles.boxLink}>
           <div className={styles.box}>
             <div class={styles.boxItems}>
               <PiFileTextFill size={40}/>
               <t>Registration</t>
             </div>
           </div>
+        </Link>
           <div className={styles.box}>
             <div class={styles.boxItems}>
               <ImDrawer size={40}/>
