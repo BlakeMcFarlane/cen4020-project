@@ -17,7 +17,7 @@ const Profile = () => {
             <div class={styles.profileSection}>
                 <div class={styles.profileLeft}>
                     <div class={styles.profilePhotoContainer}>
-                        <img src="http://localhost:8000/media/stock-photo.jpg" alt="Stock Photo" class={styles.image}/>
+                        <img src="http://localhost:8000/media/rocky-image.jpg" alt="Stock Photo" class={styles.image}/>
                     </div>
                 </div>
                 <div class={styles.profileRight}>
@@ -45,7 +45,7 @@ const Profile = () => {
                 </div>
                 <div class={styles.informationRow}>
                     <p class={styles.informationText}>Citizenship:</p>
-                    <p class={styles.informationText}>{userData.citizenship}</p>
+                    <p class={styles.informationText}>{userData.citizen}</p>
                 </div>
             </div>
             <h4 class={styles.boxHeader}>General Information</h4>
@@ -56,7 +56,7 @@ const Profile = () => {
                 </div>
                 <div class={styles.informationRow}>
                     <p class={styles.informationText}>Class:</p>
-                    <p class={styles.informationText}>N/A</p>
+                    <p class={styles.informationText}>{userData.class}</p>
                 </div>
                 <div class={styles.informationRow}>
                     <p class={styles.informationText}>Total Credits:</p>

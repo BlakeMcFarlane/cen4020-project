@@ -16,6 +16,14 @@
     box-sizing: border-box;
 }
 
+.resultsBox {
+    padding-bottom: 60px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the row containers */
+}
+
 .activeRegistration {
     height: 250px;
     width: 85%;
@@ -24,11 +32,30 @@
     overflow: hidden;
 }
 
+.registrationHeader {
+    width: 80%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
 .courseLookup {
     height: 400px;
     width: 85%;
     border-radius: 20px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.input {
+    width: 250px;
+    height: 25px;
+    border-radius: 15px;
+    border: none; 
+    background-color: #e2e2e2; 
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); 
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .boxHeader {
@@ -44,18 +71,107 @@
 .header {
     background-color: lightgrey;
     display: flex;
-    justify-content: space-between;
     padding-left: 30px;
     padding-right: 30px;
     height: 30px;
     align-items: center;
     font-size: 12pt;
+    padding-bottom: 5px;
 }
 
 .headerItem {
+    font-weight: 500;
+}
+
+.noResultsContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    flex-direction: column;
 }
 
 .headerText {
     margin: 0;
     padding: 0;
+}
+
+.rowContainer {
+    display: flex;
+    width: 95%; 
+    border-bottom: 1px solid lightgrey;
+    left: 30px;
+}
+
+.row {
+    display: flex;
+    padding-left: 15px;
+    padding-right: 30px;
+    height: 35px;
+    box-sizing: border-box;
+    margin: 0;
+    position: relative;
+    align-items: center;
+}
+
+.row::after {
+    content: "";
+
+}
+
+.metricRow {
+    display: flex;
+    column-gap: 10px;
+}
+
+.activeMetrics {
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+    margin-bottom: -15px
+}
+
+.activeHeader {
+    width: 80%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup {
+    background-color: rgb(212, 212, 212);
+    position: absolute;
+    bottom: 49%;
+    height: 200px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.buttonContainer {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    gap: 20px;
+}
+
+.messageContainer {
+    height: 130px;
+    width: 80%
+}
+
+.popupMessage {
+    font-size: 13pt;
+}
+
+.confirmButton {
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    width: 80px
 }

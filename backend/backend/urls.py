@@ -12,7 +12,10 @@ router = routers.DefaultRouter()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)), 
-    path('api/authenticate/', views.authenticateUser, name='authenticate'),
+    path('api/authenticate/', views.authenticate_user, name='authenticate'),
+    path('api/search-courses/', views.search_courses, name='search_courses'),
+    path('api/register-course/', views.register_course, name='register-course'),
+    path('api/remove-course/', views.remove_course, name='remove-course'),
 ] 
 
 if settings.DEBUG:

@@ -43,10 +43,10 @@
 
 .boxLink {
     text-decoration: none;
-    color: inherit; /* Keeps the original text color */
+    color: inherit; 
 }
   
 .boxLink:hover {
     cursor: pointer;
-    opacity: 0.8; /* Slight transparency on hover */
+    opacity: 0.8; 
 }

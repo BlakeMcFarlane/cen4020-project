@@ -7,7 +7,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    row-gap: 20;
 }
 
 .itemContainer {
@@ -22,11 +21,15 @@
 .itemName {
     padding: 0;
     margin: 0;
+    font-size: 17pt;
+    font-weight: 500
 }
 
 .icon {
     display: flex;
     justify-self: center;
+    padding:0;
+    margin:0
 }
 
 .boxLink {
