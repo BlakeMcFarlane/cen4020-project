@@ -25,8 +25,9 @@ def search_courses(request):
     return Response(serializer.data)
 
 
+# API endpoint that handles user authenticate and builds user object
 @api_view(['POST'])
-def authenticateUser(request):
+def authenticate_user(request):
     email = request.data.get('email')                   # requested email
     password = request.data.get('password')             # requested password
 
@@ -57,6 +58,7 @@ def authenticateUser(request):
                 # storing role unique date inside of role_data
                 if profile.role == 'student':
                     role_data = {
+                        'uid': role_specific_obj.profile.uid,
                         'starting_semester': role_specific_obj.starting_semester,
                         'department': role_specific_obj.department.department_name if role_specific_obj.department else None,
                         'gpa': role_specific_obj.gpa,
@@ -91,3 +93,44 @@ def authenticateUser(request):
         return Response(user_data, status=status.HTTP_200_OK)
     else:
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
+
+# API endpoint that adds user to course
+@api_view(['POST'])
+def register_course(request):
+    try: 
+        student_id = request.data.get('student_id')
+        course_id = request.data.get('course_id')
+
+        # Retrieve the student and course instances
+        student = Student.objects.get(pk=student_id)
+        course = Course.objects.get(pk=course_id)
+
+        student.courses.add(course)  # Add the course to the student's active courses
+        student.save()
+
+        return Response({'message': 'Course registered successfully'}, status=status.HTTP_200_OK)
+    
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    
+# API endpoint that removes user from course
+@api_view(['POST'])
+def remove_course(request):
+    try: 
+        student_id = request.data.get('student_id')
+        course_id = request.data.get('course_id')
+        print(student_id)
+        print(course_id)
+
+        # Retrieve the student and course instances
+        student = Student.objects.get(pk=student_id)
+        course = Course.objects.get(pk=course_id)
+
+        # Remove the course from the student's active courses
+        student.courses.remove(course)
+        student.save()
+
+        return Response({'message': 'Course removed successfully'}, status=status.HTTP_200_OK)
+    
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)

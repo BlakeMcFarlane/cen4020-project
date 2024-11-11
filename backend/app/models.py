@@ -63,6 +63,7 @@ class Student(models.Model):
     def active_registration(self):
         return [
             {
+                'uid': course.uid,
                 'title': course.title,
                 'subject': course.subject,
                 'course_number': course.course_number,

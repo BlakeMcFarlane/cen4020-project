@@ -8,16 +8,16 @@ const CourseHeader = () => {
                 <p className={styles.headerText} style={{width:"80px"}}>Subject</p>
             </div>
             <div className={styles.headerItem}>
-                <p className={styles.headerText} style={{width:"80px"}}>Crs Numb</p>
+                <p className={styles.headerText} style={{width:"80px"}}>Course</p>
             </div>
             <div className={styles.headerItem}>
-                <p className={styles.headerText} style={{width:"280px"}}>Title</p>
+                <p className={styles.headerText} style={{width:"275px"}}>Title</p>
             </div>
             <div className={styles.headerItem}>
-                <p className={styles.headerText} style={{width:"50px"}}>Credits</p>
+                <p className={styles.headerText} style={{width:"70px"}}>Credits</p>
             </div>
             <div className={styles.headerItem}>
-                <p className={styles.headerText} style={{width:"200px"}}>Instructor</p>
+                <p className={styles.headerText} style={{width:"220px"}}>Instructor</p>
             </div>
             <div className={styles.headerItem}>
                 <p className={styles.headerText} style={{width:"70px"}}>Seats</p>
