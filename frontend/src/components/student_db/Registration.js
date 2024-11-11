@@ -217,19 +217,20 @@ const Registration = () => {
             <div class={styles.activeRegistration}>
 
                 <CourseHeader /> 
-
-                {userData && userData.active_registration && userData.active_registration.length > 0 ? (
-                userData.active_registration.map((course, index) => (
-                    <div class={styles.rowContainer}>
-                        <CourseRow course_info={course}/>
-                        <div style={{ width: "10px", alignContent: "center" }}>
-                            <FaTrashAlt size={15} onClick={() => removeCourse(course)}/>
+                <div class={styles.resultsBox}>
+                    {userData && userData.active_registration && userData.active_registration.length > 0 ? (
+                    userData.active_registration.map((course, index) => (
+                        <div class={styles.rowContainer}>
+                            <CourseRow course_info={course}/>
+                            <div style={{ width: "10px", alignContent: "center" }}>
+                                <FaTrashAlt size={15} onClick={() => removeCourse(course)}/>
+                            </div>
                         </div>
-                    </div>
-                ))
-                ) : (
-                    <p>No active courses.</p>
-                )}
+                    ))
+                    ) : (
+                        <p>No active courses.</p>
+                    )}
+                </div>
             </div>
         </div>
         </div>
