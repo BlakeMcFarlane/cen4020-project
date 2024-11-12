@@ -1,0 +1,79 @@
+.container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+    box-sizing: border-box;
+}
+
+.rowContainer {
+    display: flex;
+    width: 95%; 
+    border-bottom: 1px solid lightgrey;
+    left: 30px;
+}
+
+.popup {
+    background-color: rgb(248, 244, 241);
+    border-radius: 20px;
+    width: 450px;
+    height: 500px;
+    position: absolute;
+    bottom: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.formContent {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    width: 100%;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+.formRow {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+}
+
+.formLabel {
+    margin: 0;
+    padding: 0
+}
+
+.formInput {
+    border: 1px solid #ccc;         /* Light border for normal state */
+    width: 180px;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: #f9f9f9;      /* Light gray background */
+    transition: all 0.3s ease;      /* Smooth transition */
+    outline: none;                  /* Remove default outline */
+}
+
+.formInput:focus {
+    border-color: #6200ea;          /* Border color on focus */
+    background-color: #fff;         /* White background on focus */
+    box-shadow: 0 0 5px rgba(98, 0, 234, 0.2); /* Subtle shadow on focus */
+}
+
+.formButton {
+    width: 150px;
+    height: 50px;
+    margin-top: 50px;
+}

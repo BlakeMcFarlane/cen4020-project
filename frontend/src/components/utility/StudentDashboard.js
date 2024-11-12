@@ -5,7 +5,7 @@ import { SiMicrosoftacademic } from "react-icons/si";
 import { PiFileTextFill } from "react-icons/pi";
 import { ImDrawer } from "react-icons/im";
 import { FaSearch } from "react-icons/fa";
-import { Link } from 'react-router-dom';  // Import Link for navigation
+import { Link } from 'react-router-dom'; 
 
 export default function StudentDashboard() {
   return (

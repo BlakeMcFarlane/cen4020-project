@@ -11,6 +11,7 @@ import './index.css';
 import React, { useState, useEffect } from 'react';
 import { UserContext } from './components/UserContext';
 import ClassDetails from './components/student_db/ClassDetails';
+import InstructorClassroom from './components/instructor_db/InstructorClassroom';
 
 
 function App() {
@@ -43,6 +44,12 @@ function App() {
             <Route path="/registration" element={<Registration />} />
             <Route path="/documents" element={<Documents />} />
             <Route path="/what-if" element={<WhatifAnalysis />} />
+
+            {/* INSTRUCTOR PATHS */}
+            <Route path="/instructor/classroom" element={<InstructorClassroom />} />
+
+            {/* STAFF PATHS */}
+            <Route path="/staff/instructors" element={<InstructorClassroom />} />
           </Routes>
         </Router>
       </div>

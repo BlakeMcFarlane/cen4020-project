@@ -1,6 +1,19 @@
 # import serializers from the REST framework
 from rest_framework import serializers
-from .models import Instructor, Department, Course
+from .models import Instructor, Department, Course, Profile
+from django.contrib.auth.models import User
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username']
+
+class ProfileSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = Profile
+        fields = ['uid', 'user', 'role', 'phone', 'gender', 'ethnicity', 'citizen']
 
 class CourseSerializer(serializers.ModelSerializer):
     instructor = serializers.SerializerMethodField()  # Use SerializerMethodField to customize instructor representation
@@ -18,12 +31,13 @@ class CourseSerializer(serializers.ModelSerializer):
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Department
-        fields = ('departmentID', 'departmentName')
+        fields = ['uid', 'department_name']
 
 # Instructor serializer
 class InstructorSerializer(serializers.ModelSerializer):
-    departmentName = serializers.CharField(source='departmentID.departmentName', read_only=True)        # Custom field to read on frontend
+    profile = ProfileSerializer()
+    department = DepartmentSerializer()
 
     class Meta:
         model = Instructor
-        fields = ('instructorID', 'firstName', 'lastName', 'instructorPhone', 'departmentID', 'departmentName', 'hiredSemster')
+        fields = ['profile', 'department', 'hired_semester']
