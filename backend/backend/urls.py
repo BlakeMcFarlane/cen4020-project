@@ -16,6 +16,8 @@ urlpatterns = [
     path('api/search-courses/', views.search_courses, name='search_courses'),
     path('api/register-course/', views.register_course, name='register-course'),
     path('api/remove-course/', views.remove_course, name='remove-course'),
+    path('api/list-instructors/', views.list_instructors, name='list-instructors'),
+    path('api/add-instructor/', views.add_instructor, name='add-instructor'),
 ] 
 
 if settings.DEBUG:

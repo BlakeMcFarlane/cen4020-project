@@ -3,8 +3,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from app.models import Profile, Student, Instructor, Staff, Advisor, Course  # Import all role-specific models
-from .serializers import CourseSerializer
+from app.models import Profile, Student, Instructor, Staff, Advisor, Course, Department  # Import all role-specific models
+from .serializers import CourseSerializer, InstructorSerializer
 
 @api_view(['GET'])
 def search_courses(request):
@@ -23,7 +23,6 @@ def search_courses(request):
 
     serializer = CourseSerializer(courses, many=True)
     return Response(serializer.data)
-
 
 # API endpoint that handles user authenticate and builds user object
 @api_view(['POST'])
@@ -46,15 +45,15 @@ def authenticate_user(request):
             'staff': Staff,
             'advisor': Advisor,
         }
-
+        print("ROLE: ", profile.role)
         # get models attributes of profile
-        model = role_model_mapping.get(profile.role)
-
+        model = role_model_mapping.get(profile.role.lower())
+        print("MODEL: ", model)
         if model:
             try:
                 role_specific_obj = model.objects.get(profile=profile)
                 role_data = {}
-
+                print("ROLE: ", profile.role.lower())
                 # storing role unique date inside of role_data
                 if profile.role == 'student':
                     role_data = {
@@ -66,8 +65,9 @@ def authenticate_user(request):
                         'active_registration': role_specific_obj.active_registration,
                         'class': role_specific_obj.year,
                     }
-                elif profile.role == 'instructor':
+                elif profile.role.lower() == 'instructor':
                     role_data = {
+                        'uid': role_specific_obj.profile.uid,
                         'hired_semester': role_specific_obj.hired_semester,
                         'department': role_specific_obj.department.department_name if role_specific_obj.department else None,
                     }
@@ -134,3 +134,42 @@ def remove_course(request):
     
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def list_instructors(request):
+    instructors = Instructor.objects.all()
+    serializer = InstructorSerializer(instructors, many=True)
+
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def add_instructor(request):
+    try:
+        # Extract data from the request
+        first_name = request.data.get('first_name')
+        last_name = request.data.get('last_name')
+        username = request.data.get('email')
+        department_id = request.data.get('department')
+        hired_semester = request.data.get('hired_semester')
+        gender = request.data.get('gender')
+
+        # Create a new User instance
+        user = User.objects.create(username=username, first_name=first_name, last_name=last_name)
+        user.set_password("123Password!")
+        user.save()
+
+        # Create a Profile instance for the instructor
+        profile = Profile.objects.create(user=user, role="Instructor", gender=gender)
+        
+        # Create the Instructor instance
+        department = Department.objects.get(pk=department_id)
+        instructor = Instructor.objects.create(profile=profile, department=department, hired_semester=hired_semester)
+        
+        # Serialize and return the newly created instructor
+        serializer = InstructorSerializer(instructor)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+

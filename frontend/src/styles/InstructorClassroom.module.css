@@ -1,0 +1,165 @@
+.container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+    box-sizing: border-box;
+    margin-left: 250px;
+    padding-left: 5%;
+    width: 100%
+}
+.main{
+    width: 100%;
+    display: flex;
+}
+
+.addButton {
+    height: 45px;
+    outline: none;
+    border-radius: 5px;
+    background-color: #dddddd;
+    border: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 120px;
+    justify-content: space-around;
+}
+
+.title {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.titleText {
+    width: 700px
+}
+.rowContainer {
+    display: flex;
+    width: 100%; 
+    border-bottom: 1px solid lightgrey;
+    left: 30px;
+    justify-content: space-between;
+    height: 35px;
+    align-items: center;
+    padding-left: 10px
+}
+
+.popup {
+    background-color: rgba(255, 255, 255, 0.966);
+    border-radius: 20px;
+    width: 450px;
+    height: 500px;
+    position: absolute;
+    bottom: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.formContent {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    width: 100%;
+    padding: 0 30px;
+    box-sizing: border-box;
+    
+}
+
+.formRow {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+}
+
+.formLabel {
+    margin: 0;
+    padding: 0
+}
+
+.formInput {
+    border: 1px solid #ccc;         /* Light border for normal state */
+    width: 180px;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: #f9f9f9;      /* Light gray background */
+    transition: all 0.3s ease;      /* Smooth transition */
+    outline: none;                  /* Remove default outline */
+}
+
+.formInput:focus {
+    border-color: #6200ea;          /* Border color on focus */
+    background-color: #fff;         /* White background on focus */
+    box-shadow: 0 0 5px rgba(98, 0, 234, 0.2); /* Subtle shadow on focus */
+}
+
+.formButton {
+    width: 150px;
+    height: 50px;
+    margin-top: 50px;
+}
+
+.listContainer {
+    width: 70%
+}
+
+.listContent {
+    width: 100%;
+}
+
+.listHeader {
+    background-color: rgb(43, 43, 43);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.headerLabel {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}  
+
+.filterContainer {
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filterContent {
+    background-color: #e6e6e6;
+    border-radius: 15px;
+    height: 97%;
+    width: 95%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.headerText {
+    padding: 0;
+    margin: 0
+}
+
+.label{
+    padding: 0;
+    margin: 0;
+    color: rgb(235, 235, 235);
+    font-weight: 500;
+}

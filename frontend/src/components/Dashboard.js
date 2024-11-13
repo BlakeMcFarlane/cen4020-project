@@ -12,18 +12,19 @@ const Dashboard = () => {
 
   // Display dashboard based on users role
   const renderDashboard = () => {
-    switch (userData?.role) {
-      case 'staff':
-        return <StaffDashboard />;
-      case 'instructor':
-        return <InstructorDashboard />;
-      case 'student':
-        return <StudentDashboard />;
-      case 'advisor':
-        return <AdvisorDashboard />;
-      default:
-        return <p>No dashboard available for this role.</p>;
-    }
+    if (userData.role.toLowerCase() === 'instructor') {
+      return <InstructorDashboard />;
+  } else if (userData.role === 'student') {
+      return <StudentDashboard />;
+  } else if (userData.role === 'staff') {
+    return <StaffDashboard />;
+  } else if (userData.role === 'advisor') {
+      return <AdvisorDashboard />;
+  }
+  // Add other roles as needed
+  else {
+      return <p>No dashboard available for this role.</p>;
+  }
   };
 
   return (
