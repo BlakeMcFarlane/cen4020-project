@@ -4,7 +4,7 @@ import styles from "../../styles/Dashboard.module.css"
 import { UserContext } from '../../components/UserContext';  
 import { Link } from 'react-router-dom';
 
-const Classroom = () => {
+const InstructorClassroom = () => {
   const { userData, setUserData } = useContext(UserContext); 
 
   return (
@@ -37,4 +37,4 @@ const Classroom = () => {
   );
 };
 
-export default Classroom;
+export default InstructorClassroom;

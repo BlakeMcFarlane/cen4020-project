@@ -1,0 +1,105 @@
+.container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+.content {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 250px;
+}
+
+.contentSide {
+    height: 100vh;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 20px;
+
+}
+
+.profileSection{
+    width: 100%;
+    height: 180px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.profileLeft {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileRight {
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.informationSection{
+    width: 100%;
+    height: fit-content;
+    border-radius: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #f3f4f6; 
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    box-sizing: border-box;
+    padding: 20px 20px;
+}
+
+.profilePhotoContainer {
+    height: 110px;
+    width: 110px;
+    background-color: rgb(32, 32, 32);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.image {
+    object-fit: cover;
+    width: 100%;
+}
+
+.profileName {
+    margin:0;
+    padding:0;
+}
+.profileText {
+    margin:0;
+    padding:0;
+}
+
+.informationRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 25px;
+    height: 20px;
+}
+
+.informationText {
+    margin: 0;
+    padding: 0;
+}
+
+.boxHeader {
+    padding:0;
+    margin:0;
+    padding: 0px 20px;
+    margin-bottom: -10px;
+    font-size: 15pt;
+}

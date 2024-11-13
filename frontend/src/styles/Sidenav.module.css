@@ -7,11 +7,11 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    row-gap: 20;
+    position: fixed;
 }
 
 .itemContainer {
-    height: 150px;
+    height: 140px;
     width: 150px;
     display: flex;
     align-items: center;
@@ -19,21 +19,18 @@
     flex-direction: column;
 }
 
-.profilePhotoContainer {
-    height: 80px;
-    width: 80px;
-    background-color: rgb(32, 32, 32);
-    border-radius: 50%;
-}
-
 .itemName {
     padding: 0;
     margin: 0;
+    font-size: 17pt;
+    font-weight: 500
 }
 
 .icon {
     display: flex;
     justify-self: center;
+    padding:0;
+    margin:0
 }
 
 .boxLink {
@@ -45,3 +42,17 @@
     cursor: pointer;
     opacity: 0.8; 
 }
+
+.profilePhotoContainer {
+    height: 80px;
+    width: 80px;
+    background-color: rgb(32, 32, 32);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.image {
+    object-fit: cover;
+    width: 100%;
+}
+
