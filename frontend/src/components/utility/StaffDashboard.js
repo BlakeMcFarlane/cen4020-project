@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../../styles/Dashboard.module.css';
 import { FaPersonChalkboard } from "react-icons/fa6";
 import { HiUserGroup } from "react-icons/hi2";
-import { ImDrawer } from "react-icons/im";
+import { SiAdobelightroomclassic } from "react-icons/si";
 import { ImBriefcase } from "react-icons/im";
 import { Link } from 'react-router-dom'; 
 
@@ -17,18 +17,22 @@ export default function StaffDashboard() {
             </div>
           </div>
         </Link>
+        <Link to="/staff/students" class={styles.boxLink}>
           <div className={styles.box}>
           <div class={styles.boxItems}>
               <HiUserGroup size={40}/>
               <t>Students</t>
             </div>
           </div>
+        </Link>
+        <Link to="/staff/courses" class={styles.boxLink}>
           <div className={styles.box}>
             <div class={styles.boxItems}>
-              <ImDrawer size={40}/>
-              <t>Documents</t>
+              <SiAdobelightroomclassic size={40}/>
+              <t>Courses</t>
             </div>
           </div>
+        </Link>
           <div className={styles.box}>
             <div class={styles.boxItems}>
               <ImBriefcase   size={40}/>

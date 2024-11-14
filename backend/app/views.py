@@ -1,10 +1,11 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from app.models import Profile, Student, Instructor, Staff, Advisor, Course, Department  # Import all role-specific models
-from .serializers import CourseSerializer, InstructorSerializer
+from app.models import Profile, Student, Instructor, Staff, Advisor, Course, Department, Major  # Import all role-specific models
+from .serializers import CourseSerializer, InstructorSerializer, StudentSerializer
 
 @api_view(['GET'])
 def search_courses(request):
@@ -45,7 +46,7 @@ def authenticate_user(request):
             'staff': Staff,
             'advisor': Advisor,
         }
-        print("ROLE: ", profile.role)
+        print("ROLE: ", profile.role.lower())
         # get models attributes of profile
         model = role_model_mapping.get(profile.role.lower())
         print("MODEL: ", model)
@@ -55,7 +56,7 @@ def authenticate_user(request):
                 role_data = {}
                 print("ROLE: ", profile.role.lower())
                 # storing role unique date inside of role_data
-                if profile.role == 'student':
+                if profile.role.lower() == 'student':
                     role_data = {
                         'uid': role_specific_obj.profile.uid,
                         'starting_semester': role_specific_obj.starting_semester,
@@ -75,7 +76,7 @@ def authenticate_user(request):
                 return Response({'error': f'{profile.role.capitalize()} profile not found'}, status=status.HTTP_404_NOT_FOUND)
         else:
             role_data = {}
-
+        print(profile.role)
         # return object
         user_data = {
             'name': user.get_full_name(),
@@ -83,7 +84,7 @@ def authenticate_user(request):
             'last_name': user.last_name,
             'email': user.email,
             'phone': profile.phone,
-            'role': profile.role,
+            'role': profile.role.lower(),
             'citizen': profile.citizen,
             'gender': profile.gender,
             'ethnicity': profile.ethnicity,
@@ -135,7 +136,7 @@ def remove_course(request):
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-
+# Lists all instructors
 @api_view(['GET'])
 def list_instructors(request):
     instructors = Instructor.objects.all()
@@ -143,6 +144,7 @@ def list_instructors(request):
 
     return Response(serializer.data)
 
+# Adds instructor
 @api_view(['POST'])
 def add_instructor(request):
     try:
@@ -173,3 +175,79 @@ def add_instructor(request):
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+# Lists all students
+@api_view(['GET'])
+def list_students(request):
+    students = Student.objects.all()
+    serializer = StudentSerializer(students, many=True)
+
+    return Response(serializer.data)
+
+# Add a student
+@api_view(['POST'])
+def add_student(request):
+    try:
+        # Extract data from the request
+        first_name = request.data.get('first_name')
+        last_name = request.data.get('last_name')
+        username = request.data.get('email')
+        major_id = request.data.get('major')
+        gender = request.data.get('gender')
+
+        # Create a new User instance
+        user = User.objects.create(username=username, first_name=first_name, last_name=last_name)
+        user.set_password("123password!")
+        user.save()
+
+        # Create a Profile instance for the student
+        profile = Profile.objects.create(user=user, role="Student", gender=gender)
+        
+        # Create the Student instance
+        major = Major.objects.get(pk=major_id)
+        student = Student.objects.create(profile=profile, major=major)
+        
+        # Serialize and return the newly created student
+        serializer = StudentSerializer(student)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+# Lists all courses
+@api_view(['GET'])
+def list_courses(request):
+    courses = Course.objects.all()
+    serializer = CourseSerializer(courses, many=True)
+
+    return Response(serializer.data)
+
+# Add course
+@api_view(['POST'])
+def add_course(request):
+    try:
+        # Prepare data for the serializer
+        data = {
+            "subject": request.data.get('subject'),
+            "course_number": request.data.get('course_number'),
+            "title": request.data.get('title'),
+            "credits": request.data.get('credits'),
+            "department": request.data.get('department'),  # Pass the department ID directly
+            "instructor": request.data.get('instructor'),  # Pass the instructor ID directly
+            "total_seats": request.data.get('total_seats') or 0,
+            "available_seats": request.data.get('available_seats') or 0,
+        }
+        print("ADDING : ", data)
+
+        # Use the serializer to validate data
+        serializer = CourseSerializer(data=data)
+        if serializer.is_valid():
+            course = serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            # Print serializer errors for debugging
+            print("Serializer errors:", serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    except Exception as e:
+        print("Error creating course:", e)
+        return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)

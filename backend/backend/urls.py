@@ -18,6 +18,11 @@ urlpatterns = [
     path('api/remove-course/', views.remove_course, name='remove-course'),
     path('api/list-instructors/', views.list_instructors, name='list-instructors'),
     path('api/add-instructor/', views.add_instructor, name='add-instructor'),
+    path('api/list-students/', views.list_students, name='list-students'),
+    path('api/add-student/', views.add_student, name='add-student'),
+    path('api/list-courses/', views.list_courses, name='list-courses'),
+    path('api/add-course/', views.add_course, name='add-course'),
+
 ] 
 
 if settings.DEBUG:

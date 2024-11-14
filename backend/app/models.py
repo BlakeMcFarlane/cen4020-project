@@ -101,11 +101,11 @@ class Course(models.Model):
     subject = models.CharField(max_length=5)
     course_number = models.IntegerField()
     title = models.CharField(max_length=50)
-    credits = models.IntegerField()
+    credits = models.IntegerField(null=True, blank=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, null=True)
-    total_seats = models.IntegerField()
-    available_seats = models.IntegerField()
+    total_seats = models.IntegerField(null=True, blank=True)
+    available_seats = models.IntegerField(null=True, blank=True)
     students = models.ManyToManyField('Student', related_name='courses', blank=True) 
 
     def __str__(self):

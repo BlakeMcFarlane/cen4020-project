@@ -13,6 +13,9 @@ import { UserContext } from './components/UserContext';
 import ClassDetails from './components/student_db/ClassDetails';
 import InstructorClassroom from './components/instructor_db/InstructorClassroom';
 import Instructors from './components/staff_db/Instructors';
+import Students from './components/staff_db/Students';
+import Courses from './components/staff_db/Courses';
+
 
 
 function App() {
@@ -51,6 +54,8 @@ function App() {
 
             {/* STAFF PATHS */}
             <Route path="/staff/instructors" element={<Instructors />} />
+            <Route path="/staff/students" element={<Students />} />
+            <Route path="/staff/courses" element={<Courses />} />
           </Routes>
         </Router>
       </div>
