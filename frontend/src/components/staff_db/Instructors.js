@@ -5,7 +5,7 @@ import { UserContext } from '../../components/UserContext';
 import { IoMdAddCircle } from "react-icons/io";
 
 const Instructors = () => {
-  const { userData, setUserData } = useContext(UserContext); 
+  const { userData, setUserData } = useContext(UserContext);
   const [instructors, setInstructors] = useState([]);
   const [addInstructor, setAddInstructor] = useState(false);
   const [formData, setFormData] = useState({
@@ -77,7 +77,10 @@ const Instructors = () => {
           gender: '',
         });
       } else {
-        console.error("Failed to add instructor");
+        const errorData = await response.json();  // Extract the error message from the response
+        if (errorData.error) {
+          alert(errorData.error);  // Show the error message
+        }
       }
     } catch (error) {
       console.error("Error:", error);
@@ -93,14 +96,14 @@ const Instructors = () => {
         <div class={styles.title}>
           <h1 class={styles.titleText}>Instructors</h1>
           <button onClick={() => setAddInstructor(!addInstructor)} class={styles.addButton}>
-          {addInstructor ? (
-            <div class={styles.addButton}>
-              <p>Cancel</p>
-            </div>
+            {addInstructor ? (
+              <div class={styles.addButton}>
+                <p>Cancel</p>
+              </div>
             ) : (
               <div class={styles.addButton}>
                 <p>Add Instructor</p>
-                <IoMdAddCircle size={15}/>
+                <IoMdAddCircle size={15} />
               </div>
             )}
           </button>
@@ -108,19 +111,19 @@ const Instructors = () => {
         <div class={styles.main}>
           <div class={styles.listContainer} >
             <div class={styles.listHeader}>
-              <div class={styles.headerLabel} style={{width:'150px'}}>
+              <div class={styles.headerLabel} style={{ width: '150px' }}>
                 <p class={styles.label}>Full Name</p>
               </div>
-              <div class={styles.headerLabel} style={{width:'150px'}}>
+              <div class={styles.headerLabel} style={{ width: '150px' }}>
                 <p class={styles.label}>Department</p>
               </div>
-              <div class={styles.headerLabel} style={{width:'210px'}}>
+              <div class={styles.headerLabel} style={{ width: '210px' }}>
                 <p class={styles.label}>Email</p>
               </div>
-              <div class={styles.headerLabel} style={{width:'50px'}}>
+              <div class={styles.headerLabel} style={{ width: '50px' }}>
                 <p class={styles.label}>Courses</p>
               </div>
-              <div class={styles.headerLabel} style={{width:'60px'}}>
+              <div class={styles.headerLabel} style={{ width: '60px' }}>
                 <p class={styles.label}>Students</p>
               </div>
             </div>
@@ -129,7 +132,7 @@ const Instructors = () => {
             <div class={styles.listContent}>
               {instructors.map((instructor, index) => (
                 <div key={index} className={styles.rowContainer}>
-                  <div style={{ width: "150px", display:"flex", flexDirection:"row" }}>
+                  <div style={{ width: "150px", display: "flex", flexDirection: "row" }}>
                     <p className={styles.headerText}>{instructor.profile.user.first_name}&nbsp;{instructor.profile.user.last_name}</p>
                   </div>
                   <div style={{ width: "140px" }}>
@@ -148,8 +151,8 @@ const Instructors = () => {
               ))}
             </div>
           </div>
-          
-          
+
+
           <div class={styles.filterContainer}>
             <div class={styles.filterContent}>
               <h2>Filter</h2>
@@ -157,7 +160,7 @@ const Instructors = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Add Instructor Form */}
         {addInstructor && (
           <div className={styles.popup}>

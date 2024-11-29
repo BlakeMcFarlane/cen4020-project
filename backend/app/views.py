@@ -156,6 +156,9 @@ def add_instructor(request):
         hired_semester = request.data.get('hired_semester')
         gender = request.data.get('gender')
 
+        if Profile.objects.filter(user__username=username).exists():
+            return Response({"error": "Instructor already exists! Cannot have duplicate."}, status=status.HTTP_400_BAD_REQUEST)
+
         # Create a new User instance
         user = User.objects.create(username=username, first_name=first_name, last_name=last_name)
         user.set_password("123Password!")
