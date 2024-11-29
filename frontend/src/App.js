@@ -15,7 +15,7 @@ import InstructorClassroom from './components/instructor_db/InstructorClassroom'
 import Instructors from './components/staff_db/Instructors';
 import Students from './components/staff_db/Students';
 import Courses from './components/staff_db/Courses';
-
+import AdvisorCourses from './components/advisor_db/AdvisorCourses';
 
 
 function App() {
@@ -56,6 +56,9 @@ function App() {
             <Route path="/staff/instructors" element={<Instructors />} />
             <Route path="/staff/students" element={<Students />} />
             <Route path="/staff/courses" element={<Courses />} />
+
+            {/* ADVISOR PATHS */}
+            <Route path = "advisor/courses" element={<AdvisorCourses />}/>
           </Routes>
         </Router>
       </div>
