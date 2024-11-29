@@ -65,7 +65,9 @@ const Students = () => {
           gender: '',
         });
       } else {
+        const errorData = await response.json();
         console.error("Failed to add student");
+        alert(errorData.error);  // Show the error message
       }
     } catch (error) {
       console.error("Error:", error);

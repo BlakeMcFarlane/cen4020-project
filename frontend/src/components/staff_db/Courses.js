@@ -112,17 +112,19 @@ const Courses = () => {
         setCourses([...courses, newCourse]);
         setAddCourse(false);
         setFormData({
-            subject: '',
-            course_number: '',
-            title: '',
-            credits: '',
-            instructor: '',
-            department: '',
-            total_seats: '',
-            available_seats: '',
+          subject: '',
+          course_number: '',
+          title: '',
+          credits: '',
+          instructor: '',
+          department: '',
+          total_seats: '',
+          available_seats: '',
         });
       } else {
+        const errorData = await response.json();
         console.error("Failed to add course");
+        alert(errorData.error);  // Show the error message
       }
     } catch (error) {
       console.error("Error:", error);
@@ -138,14 +140,14 @@ const Courses = () => {
         <div class={styles.title}>
           <h1 class={styles.titleText}>Courses</h1>
           <button onClick={() => setAddCourse(!addCourse)} class={styles.addButton}>
-          {addCourse ? (
-            <div class={styles.addButton}>
-              <p>Cancel</p>
-            </div>
+            {addCourse ? (
+              <div class={styles.addButton}>
+                <p>Cancel</p>
+              </div>
             ) : (
               <div class={styles.addButton}>
                 <p>Add Course</p>
-                <IoMdAddCircle size={15}/>
+                <IoMdAddCircle size={15} />
               </div>
             )}
           </button>
@@ -153,25 +155,25 @@ const Courses = () => {
         <div class={styles.main}>
           <div class={styles.listContainer} >
             <div class={styles.listHeader}>
-              <div class={styles.headerLabel} style={{width:'50px'}}>
+              <div class={styles.headerLabel} style={{ width: '50px' }}>
                 <p class={styles.label}>Subject</p>
               </div>
-              <div class={styles.headerLabel} style={{width:'50px'}}>
+              <div class={styles.headerLabel} style={{ width: '50px' }}>
                 <p class={styles.label}>Course</p>
               </div>
-              <div class={styles.headerLabel} style={{width:'210px'}}>
+              <div class={styles.headerLabel} style={{ width: '210px' }}>
                 <p class={styles.label}>Title</p>
               </div>
-              <div class={styles.headerLabel} style={{width:'50px'}}>
+              <div class={styles.headerLabel} style={{ width: '50px' }}>
                 <p class={styles.label}>Credits</p>
               </div>
-              <div class={styles.headerLabel} style={{width:'150px'}}>
+              <div class={styles.headerLabel} style={{ width: '150px' }}>
                 <p class={styles.label}>Department</p>
               </div>
-              <div class={styles.headerLabel} style={{width:'200px'}}>
+              <div class={styles.headerLabel} style={{ width: '200px' }}>
                 <p class={styles.label}>instructor</p>
               </div>
-              <div class={styles.headerLabel} style={{width:'50px'}}>
+              <div class={styles.headerLabel} style={{ width: '50px' }}>
                 <p class={styles.label}>total_seats</p>
               </div>
             </div>
@@ -180,7 +182,7 @@ const Courses = () => {
             <div class={styles.listContent}>
               {courses.map((course, index) => (
                 <div key={index} className={styles.rowContainer}>
-                  <div style={{ width: "50px", display:"flex", flexDirection:"row" }}>
+                  <div style={{ width: "50px", display: "flex", flexDirection: "row" }}>
                     <p className={styles.headerText}>{course.subject}</p>
                   </div>
                   <div style={{ width: "50px" }}>
@@ -196,10 +198,10 @@ const Courses = () => {
                     <p className={styles.headerText}>{course.department_display}</p>
                   </div>
                   <div style={{ width: "200px" }}>
-                  <p className={styles.headerText}>
-                    {course.instructor_display}
+                    <p className={styles.headerText}>
+                      {course.instructor_display}
                     </p>
-                    </div>
+                  </div>
                   <div style={{ width: "50px" }}>
                     <p className={styles.headerText}>{course.total_seats}</p>
                   </div>
@@ -214,7 +216,7 @@ const Courses = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Add Instructor Form */}
         {addCourse && (
           <div className={styles.popup}>
@@ -267,33 +269,33 @@ const Courses = () => {
               <div className={styles.formRow}>
                 <p className={styles.formLabel}>Department</p>
                 <select
-                    name="department"
-                    value={formData.department}
-                    onChange={handleDepartmentChange}
-                    className={styles.formInput}
+                  name="department"
+                  value={formData.department}
+                  onChange={handleDepartmentChange}
+                  className={styles.formInput}
                 >
-                <option value="">Select Department</option>
-                {departments.map((dep) => (
+                  <option value="">Select Department</option>
+                  {departments.map((dep) => (
                     <option key={dep.id} value={dep.id}>{dep.name}</option>
-                ))}
+                  ))}
                 </select>
-                </div>
-                <div className={styles.formRow}>
-                    <p className={styles.formLabel}>Instructor</p>
-                    <select
-                    name="instructor"
-                    value={formData.instructor}
-                    onChange={(e) => setFormData({ ...formData, instructor: e.target.value })}
-                    className={styles.formInput}
-                    >
-                    <option value="">Select Instructor</option>
-                    {filteredInstructors.map((ins) => (
-                        <option key={ins.profile.uid} value={ins.profile.uid}>
-                        {ins.profile.user.first_name} {ins.profile.user.last_name}
-                        </option>
-                    ))}
-                    </select>
-                </div>
+              </div>
+              <div className={styles.formRow}>
+                <p className={styles.formLabel}>Instructor</p>
+                <select
+                  name="instructor"
+                  value={formData.instructor}
+                  onChange={(e) => setFormData({ ...formData, instructor: e.target.value })}
+                  className={styles.formInput}
+                >
+                  <option value="">Select Instructor</option>
+                  {filteredInstructors.map((ins) => (
+                    <option key={ins.profile.uid} value={ins.profile.uid}>
+                      {ins.profile.user.first_name} {ins.profile.user.last_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
             <button class={styles.formButton} onClick={handleAddCourse}>Submit</button>
           </div>

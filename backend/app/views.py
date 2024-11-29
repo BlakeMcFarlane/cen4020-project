@@ -197,6 +197,9 @@ def add_student(request):
         major_id = request.data.get('major')
         gender = request.data.get('gender')
 
+        if Profile.objects.filter(user__username=username).exists():
+            return Response({"error": "Student already exists! Cannot have duplicate."}, status=status.HTTP_400_BAD_REQUEST)
+        
         # Create a new User instance
         user = User.objects.create(username=username, first_name=first_name, last_name=last_name)
         user.set_password("123password!")
@@ -240,7 +243,8 @@ def add_course(request):
             "available_seats": request.data.get('available_seats') or 0,
         }
         print("ADDING : ", data)
-
+        if Course.objects.filter(course_number=data["course_number"]).exists():
+            return Response({"error": "Course already exists! Cannot have duplicate."}, status=status.HTTP_400_BAD_REQUEST)
         # Use the serializer to validate data
         serializer = CourseSerializer(data=data)
         if serializer.is_valid():
