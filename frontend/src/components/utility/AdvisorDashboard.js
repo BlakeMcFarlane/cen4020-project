@@ -7,6 +7,7 @@ import { ImBriefcase } from "react-icons/im";
 import { RiDashboard3Fill } from "react-icons/ri";
 import { FaSearch } from "react-icons/fa";
 import { PiSwapBold } from "react-icons/pi";
+import { Link } from 'react-router-dom'; 
 
 export default function AdvisorDashboard() {
   return (
@@ -41,18 +42,14 @@ export default function AdvisorDashboard() {
               <t>Performance</t>
             </div>
           </div>
+          <Link to="/what-if" class={styles.boxLink}>
           <div className={styles.box}>
             <div class={styles.boxItems}>
-              <FaSearch size={40}/>
-              <t>What-If Analysis</t>
+              <FaSearch  size={40}/>
+              <t>What-if Analysis</t>
             </div>
           </div>
-          <div className={styles.box}>
-            <div class={styles.boxItems}>
-              <PiSwapBold    size={40}/>
-              <t>Add & Drop</t>
-            </div>
-          </div>
+        </Link>
     </div>
   )
 }
