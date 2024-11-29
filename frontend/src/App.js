@@ -16,7 +16,7 @@ import Instructors from './components/staff_db/Instructors';
 import Students from './components/staff_db/Students';
 import Courses from './components/staff_db/Courses';
 import AdvisorCourses from './components/advisor_db/AdvisorCourses';
-
+import AdvisorStudents from './components/advisor_db/AdvisorStudents';
 
 function App() {
   const [userData, setUserData] = useState(() => {                // store user data accross
@@ -59,6 +59,7 @@ function App() {
 
             {/* ADVISOR PATHS */}
             <Route path = "advisor/courses" element={<AdvisorCourses />}/>
+            <Route path = "advisor/students" element = {<AdvisorStudents />} />
           </Routes>
         </Router>
       </div>
